@@ -2,8 +2,9 @@
   "name": "react",
   "version": "1.0.0",
   "description": "This is React with Shauryaa ",
-  "main": "APP.js",
+ 
   "scripts": {
+    "start": "parcel index.html",
     "test": "jest"
   },
   "repository": {

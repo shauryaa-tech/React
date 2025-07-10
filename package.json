@@ -2,7 +2,6 @@
   "name": "react",
   "version": "1.0.0",
   "description": "This is React with Shauryaa ",
- 
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",
@@ -20,6 +19,9 @@
   },
   "homepage": "https://github.com/shauryaa-tech/React#readme",
   "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "@babel/preset-react": "^7.27.1",
     "parcel": "^2.15.4"
   },
   "browserslist": [

@@ -1,41 +1,25 @@
-/** 
- * 
- * <div id="parent">
- *   <div id="child">
- *        <h1>I'm an h1 tag</h1>
- *        <h2>I'm an h2 tag</h2>
- *   </div>
- *   <div id="child2">
- *        <h1>I'm an h1 tag</h1>
- *        <h2>I'm an h2 tag</h2>
- *   </div>
- * </div>
- * 
- * ReactElement(Object) => HTMl(Browser Understand)
- */
-
 import React from "react";
 import ReactDOM from "react-dom/client"
 
-const parent = React.createElement(
-     "div", 
-     {id: "parent"},
-     [React.createElement("div", {id: "child"}, [
-     React.createElement("h1", {}, "React 🚀"),
-     React.createElement("h2", {}, "by Shaurya Pratap Singh"),
-     ]),
+// React.createElement => ReactElement-JS Object => HTMLElement(render)
 
-     React.createElement("div", {id: "child2"}, [
-     React.createElement("h1", {}, "I'm an h1 tag"),
-     React.createElement("h2", {}, "I'm an h2 tag"),
-     ])
-]);
+// const heading = React.createElement(
+//      "h1", 
+//      {id: "heading"},
+//      "React with Shauryaa🚀"
+// );
 
-//JSX
+// console.log(heading);
 
-console.log(parent);  // object
+
+
+// JSX - is not HTMl in JS, we can say it is HTML/XML like Syntax 
+
+// JSX => React.createElement => ReactElement-JS Object =>  HTMLElement(render)
+const jsxHeading = <h1 className="head">React using Shauryaa🚀</h1>;
+
+console.log(jsxHeading);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(parent);
-
+root.render(jsxHeading);

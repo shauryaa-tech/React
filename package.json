@@ -1,0 +1,23 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "This is React with Shauryaa ",
+  "main": "APP.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shauryaa-tech/React.git"
+  },
+  "keywords": [],
+  "author": "Shaurya Pratap Singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shauryaa-tech/React/issues"
+  },
+  "homepage": "https://github.com/shauryaa-tech/React#readme",
+  "devDependencies": {
+    "parcel": "^2.15.4"
+  }
+}

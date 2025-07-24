@@ -1,50 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState} from 'react';
 import Shimmer from './Shimmer';
 import { useParams } from 'react-router-dom';
-import { MENU_API, MENU_API2 } from '../utils/constant';
+import useRestaurantMenu from '../utils/useRestaurantMenu';
+import RestaurantCategory from './RestaurantCategory';
 
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
+  const { resId } = useParams();
+  const resInfo = useRestaurantMenu(resId);
 
-  const {resId} = useParams();
-  console.log(params);
+  if (resInfo === null) return <Shimmer />;
 
-  useEffect(() => {
-    fetchMenu();
-  }, []); // run only once on mount
-
-  const fetchMenu = async () => {
-    const data = await fetch(MENU_API + resId + MENU_API2);
-    const json = await data.json();
-
-    console.log(json);
-    // setResInfo(json.data?.cards[2]?.card?.card?.info);
-    setResInfo(json.data);
-  };
-
-   if (resInfo === null) return <Shimmer />;
+  const[showIndex, setShowIndex] = useState(null);
 
   const { name, cuisines, costForTwoMessage } =
-      resInfo.cards[2].card.card.info;
+    resInfo.cards[2].card.card.info;
 
-
-    const { itemCards } = 
-    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+  const categories = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    (c) =>
+      c.card?.["card"]?.["@type"] ===
+      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+  );
 
   return (
-    <div className="menu">
-     <h1>{name}</h1>
-     <p>
-      {cuisines.join(", ")} - {costForTwoMessage}
+    <div className="text-center">
+      <h1 className="font-bold my-6 text-2xl">{name}</h1>
+      <p className="font-bold text-lg">
+        {cuisines.join(", ")} - {costForTwoMessage}
       </p>
 
-      <h2>Menu</h2>
-      <ul>
-        {itemCards.map(item => 
-          <li key={item.card?.info?.id} >{item.card?.info?.name} -{" Rs."} {item.card?.info?.price / 100 || item.card?.info?.defaultprice / 100}</li>
-        )}
-       
-      </ul>
+      {/* Categories Accordions */}
+      <div className="w-6/12 m-auto">
+        {categories.map((category, index) => (
+          <RestaurantCategory key = {category?.card?.card?.title}
+            data={category?.card?.card}
+            setShowIndex={() => setShowIndex(index)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
